@@ -1,0 +1,55 @@
+{
+  "name": "@squeezecms/schema",
+  "version": "0.1.1",
+  "description": "Define Squeeze CMS content schemas in TypeScript and push them with the squeeze-schema CLI.",
+  "license": "MIT",
+  "homepage": "https://squeezecms.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultimatelemon/squeeze-sdk.git",
+    "directory": "packages/schema"
+  },
+  "bugs": "https://github.com/ultimatelemon/squeeze-sdk/issues",
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "squeeze-schema": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "rm -rf dist && tsc --project tsconfig.build.json && rm dist/cli.d.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "jiti": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@ultimatelemon-eu/eslint-config": "^1.1.1",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^5.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
