@@ -1,6 +1,6 @@
 {
   "name": "@squeezecms/schema",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Define Squeeze CMS content schemas in TypeScript and push them with the squeeze-schema CLI.",
   "license": "MIT",
   "homepage": "https://squeezecms.com",
