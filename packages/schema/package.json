@@ -23,7 +23,7 @@
     }
   },
   "bin": {
-    "squeeze-schema": "./dist/cli.js"
+    "squeeze-schema": "dist/cli.js"
   },
   "files": [
     "dist",

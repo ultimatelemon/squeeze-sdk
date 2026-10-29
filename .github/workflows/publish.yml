@@ -45,8 +45,7 @@ jobs:
 
       - run: npm ci
 
-      # Build before publishing: npm validates bin paths before prepublishOnly
-      # runs and silently drops a bin whose file does not exist yet.
+      # npm checks the bin file before prepublishOnly builds it.
       - run: npm run lint && npm run typecheck && npm test && npm run build
         working-directory: ${{ steps.pkg.outputs.dir }}
 
