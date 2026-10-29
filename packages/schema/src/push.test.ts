@@ -46,16 +46,16 @@ describe('formatConflicts', () => {
       { type: 'author', documents: 3 },
       { type: 'post', field: 'author', documents: 1 }
     ]).join('\n');
-    expect(out).toContain('type author (met alle documenten): 3 documenten');
-    expect(out).toContain('veld post.author: 1 document');
-    expect(out).toContain('push opnieuw met --force');
+    expect(out).toContain('type author (with all its documents): 3 documents');
+    expect(out).toContain('field post.author: 1 document');
+    expect(out).toContain('push again with --force');
   });
 
   it('does not tell watch to retry with --force', () => {
     const out = formatConflicts([{ type: 'author', documents: 1 }], true).join(
       '\n'
     );
-    expect(out).not.toContain('push opnieuw met --force');
+    expect(out).not.toContain('push again with --force');
     expect(out).toContain('stop watch');
   });
 });

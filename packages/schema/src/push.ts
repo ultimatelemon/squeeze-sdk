@@ -42,7 +42,7 @@ export function pushUrl(apiUrl: string, force: boolean): string {
 }
 
 function documentCount(n: number): string {
-  return n === 1 ? '1 document' : `${n} documenten`;
+  return n === 1 ? '1 document' : `${n} documents`;
 }
 
 // watch never forces, so its hint points at a one-off push instead.
@@ -51,19 +51,19 @@ export function formatConflicts(
   watching = false
 ): string[] {
   const lines = [
-    '✖ push geweigerd: dit schema verwijdert types of velden die nog content hebben:'
+    '✖ push refused: this schema removes types or fields that still have content:'
   ];
   for (const c of conflicts) {
     const what = c.field
-      ? `veld ${c.type}.${c.field}`
-      : `type ${c.type} (met alle documenten)`;
+      ? `field ${c.type}.${c.field}`
+      : `type ${c.type} (with all its documents)`;
     lines.push(`  - ${what}: ${documentCount(c.documents)}`);
   }
   lines.push(
     watching
-      ? 'Pas het schema aan. Wil je dit echt doorvoeren, stop watch en draai eenmalig squeeze-schema push --force.'
-      : 'Pas het schema aan, of push opnieuw met --force om het toch door te voeren.',
-    'Met --force worden documenten van verwijderde types gedepubliceerd (ze komen als concept terug als het type terugkomt, bijv. via een rollback); waarden van verwijderde velden worden definitief gewist.'
+      ? 'Fix the schema. To apply it anyway, stop watch and run squeeze-schema push --force once.'
+      : 'Fix the schema, or push again with --force to apply it anyway.',
+    'With --force, documents of removed types are unpublished (they come back as drafts when the type returns, e.g. through a rollback); values of removed fields are deleted for good.'
   );
   return lines;
 }

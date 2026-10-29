@@ -1,6 +1,5 @@
-// Squeeze schema-formaat: single source of truth voor dashboard-forms,
-// validatie en gegenereerde site-types. Schema's zijn pure JSON-data
-// (serialiseerbaar), gedefinieerd in code en per site gepusht (ULT-16).
+// The Squeeze schema format. Schemas are plain JSON data, defined in code and
+// pushed per site; the dashboard builds its forms from them.
 
 export type FieldType =
   | 'text'
@@ -18,17 +17,17 @@ export type FieldType =
   | 'blocks';
 
 /**
- * Basis met optionele naam/titel: als inline array-member zijn die niet
- * nodig; het exporteerde Field-type dwingt ze af via NamedField.
+ * Name and title are optional here because inline array members do without;
+ * Field requires them through NamedField.
  */
 interface BaseField {
-  /** Veldnaam, uniek binnen het omliggende type (snake_case aangeraden). */
+  /** Field name, unique within its type (snake_case recommended). */
   name?: string;
-  /** Label in het dashboard. */
+  /** Label in the dashboard. */
   title?: string;
   description?: string;
   required?: boolean;
-  /** Vertaalbaar per taal (i18n, fase 7). */
+  /** Has a value per language. */
   translatable?: boolean;
 }
 
@@ -46,7 +45,7 @@ export interface TextField extends BaseField {
 
 export interface SlugField extends BaseField {
   type: 'slug';
-  /** Naam van het veld waaruit de slug wordt afgeleid. */
+  /** Name of the field the slug is generated from. */
   source?: string;
 }
 
@@ -67,7 +66,7 @@ export interface BooleanField extends BaseField {
 
 export interface DateField extends BaseField {
   type: 'date';
-  /** true = datum + tijd, false/afwezig = alleen datum. */
+  /** true for date and time; date only otherwise. */
   withTime?: boolean;
 }
 
@@ -92,13 +91,13 @@ export interface FileField extends BaseField {
 
 export interface ReferenceField extends BaseField {
   type: 'reference';
-  /** Document-typenamen waarnaar verwezen mag worden. */
+  /** Document types that may be referenced. */
   to: string[];
 }
 
 export interface ArrayField extends BaseField {
   type: 'array';
-  /** Toegestane item-types; inline types hebben geen eigen naam nodig. */
+  /** Allowed item types; inline types need no name. */
   of: ArrayMember[];
 }
 
@@ -108,16 +107,16 @@ export interface ObjectField extends BaseField {
 }
 
 /**
- * Rich content: een lijst van tekstblokken (paragrafen, koppen, lijsten)
- * gemengd met inline objecten zoals afbeeldingen.
+ * Rich content: text blocks (paragraphs, headings, lists) mixed with inline
+ * objects such as images.
  */
 export interface BlocksField extends BaseField {
   type: 'blocks';
-  /** Extra bloktypes naast tekst (bijv. een image- of embed-object). */
+  /** Block types besides text, e.g. an image or embed object. */
   of?: ArrayMember[];
 }
 
-/** Array-items zijn velden met optionele naam/titel (inline types). */
+/** Array items are fields whose name and title are optional. */
 export type ArrayMember =
   | TextField
   | SlugField
@@ -133,11 +132,11 @@ export type ArrayMember =
   | ObjectField
   | BlocksField;
 
-/** Een volwaardig veld binnen een document of object: naam verplicht. */
+/** A field of a document or object; name and title are required. */
 export type Field = ArrayMember & NamedField;
 
 export interface DocumentTypePreview {
-  /** Veld dat als titel in lijstweergaven wordt getoond. */
+  /** Field shown as the title in lists. */
   titleField?: string;
   subtitleField?: string;
 }
@@ -176,7 +175,7 @@ export interface DocumentType {
 }
 
 export interface SiteSchema {
-  /** Formaatversie; hoort bij SCHEMA_FORMAT_VERSION. */
+  /** Format version; matches SCHEMA_FORMAT_VERSION. */
   version: number;
   types: DocumentType[];
 }

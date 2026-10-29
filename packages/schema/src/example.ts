@@ -5,12 +5,12 @@ export const exampleSchema = defineSchema({
   types: [
     defineType({
       name: 'post',
-      title: 'Blogpost',
+      title: 'Blog post',
       icon: 'article',
       fields: [
         defineField({
           name: 'title',
-          title: 'Titel',
+          title: 'Title',
           type: 'text',
           required: true,
           translatable: true,
@@ -25,32 +25,32 @@ export const exampleSchema = defineSchema({
         }),
         defineField({
           name: 'intro',
-          title: 'Introductie',
+          title: 'Introduction',
           type: 'richtext',
           translatable: true
         }),
         defineField({
           name: 'body',
-          title: 'Inhoud',
+          title: 'Body',
           type: 'blocks',
           translatable: true,
           of: [{ type: 'image' }]
         }),
         defineField({
           name: 'reading_minutes',
-          title: 'Leestijd (minuten)',
+          title: 'Reading time (minutes)',
           type: 'number',
           min: 1,
           integer: true
         }),
         defineField({
           name: 'published',
-          title: 'Gepubliceerd',
+          title: 'Published',
           type: 'boolean'
         }),
         defineField({
           name: 'published_at',
-          title: 'Publicatiedatum',
+          title: 'Publication date',
           type: 'date',
           withTime: true
         }),
@@ -59,25 +59,25 @@ export const exampleSchema = defineSchema({
           title: 'Status',
           type: 'select',
           options: [
-            { value: 'draft', label: 'Concept' },
+            { value: 'draft', label: 'Draft' },
             { value: 'review', label: 'In review' },
-            { value: 'final', label: 'Definitief' }
+            { value: 'final', label: 'Final' }
           ]
         }),
         defineField({
           name: 'cover',
-          title: 'Coverafbeelding',
+          title: 'Cover image',
           type: 'image',
           required: true
         }),
         defineField({
           name: 'attachment',
-          title: 'Bijlage',
+          title: 'Attachment',
           type: 'file'
         }),
         defineField({
           name: 'author',
-          title: 'Auteur',
+          title: 'Author',
           type: 'reference',
           to: ['author'],
           required: true
@@ -95,13 +95,13 @@ export const exampleSchema = defineSchema({
           fields: [
             defineField({
               name: 'meta_title',
-              title: 'Meta-titel',
+              title: 'Meta title',
               type: 'text',
               translatable: true
             }),
             defineField({
               name: 'meta_description',
-              title: 'Meta-omschrijving',
+              title: 'Meta description',
               type: 'text',
               multiline: true,
               translatable: true
@@ -113,12 +113,12 @@ export const exampleSchema = defineSchema({
     }),
     defineType({
       name: 'author',
-      title: 'Auteur',
+      title: 'Author',
       icon: 'person',
       fields: [
         defineField({
           name: 'name',
-          title: 'Naam',
+          title: 'Name',
           type: 'text',
           required: true
         }),
