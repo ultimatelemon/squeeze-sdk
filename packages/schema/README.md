@@ -79,6 +79,17 @@ and kept (they come back as drafts when the type returns, e.g. via a schema
 rollback); values of removed fields are stripped from every document for
 good. `watch` does not accept `--force`.
 
+### GitHub Actions
+
+[`ultimatelemon/squeeze-action`](https://github.com/ultimatelemon/squeeze-action)
+runs the push in CI, with the result as step outputs and in the job summary:
+
+```yaml
+- uses: ultimatelemon/squeeze-action@v1
+  with:
+    token: ${{ secrets.SQUEEZE_SCHEMA_TOKEN }}
+```
+
 ## Developing this package
 
 Point the CLI at a local API:
