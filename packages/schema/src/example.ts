@@ -125,6 +125,16 @@ export const exampleSchema = defineSchema({
         defineField({ name: 'avatar', title: 'Avatar', type: 'image' })
       ],
       preview: { titleField: 'name' }
+    }),
+    defineType({
+      name: 'settings',
+      title: 'Site settings',
+      icon: 'gear',
+      singleton: true,
+      fields: [
+        defineField({ name: 'company', title: 'Company', type: 'text' }),
+        defineField({ name: 'email', title: 'Email', type: 'text' })
+      ]
     })
   ]
 });

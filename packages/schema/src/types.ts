@@ -170,6 +170,8 @@ export interface DocumentType {
   description?: string;
   /** Dashboard icon; guessed from the name when omitted. */
   icon?: TypeIcon;
+  /** At most one document of this type, e.g. a homepage or site settings. */
+  singleton?: boolean;
   fields: Field[];
   preview?: DocumentTypePreview;
 }

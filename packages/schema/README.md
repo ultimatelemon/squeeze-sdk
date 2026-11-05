@@ -50,6 +50,12 @@ Every field can be `required` and `translatable`.
 `folder`, `calendar`, `image`, `star`, `pin`, `chat`, `link`, `gear`. Without
 it the dashboard guesses from the type name (`author` → `person`).
 
+`singleton: true` makes a type hold at most one document: a homepage, an
+about page, the company details. The dashboard opens it straight in the
+editor, and the Delivery API serves it at `/delivery/v1/singletons/<type>`.
+A push that makes a type with more than one document a singleton is refused;
+delete the extra documents first.
+
 ## Pushing
 
 ```sh
