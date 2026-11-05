@@ -16,7 +16,9 @@ New packages go in `packages/<name>` as `@squeezecms/<name>`.
 
 ## Package manager
 
-npm workspaces. Node 24 in CI.
+npm workspaces. Node 26 for development and CI. `@squeezecms/schema` keeps its
+wider `engines` range on purpose: it is what consumers need, not what we build
+with.
 
 ## Checks
 
@@ -25,8 +27,9 @@ npm install
 npm run format:check && npm run lint && npm run typecheck && npm test && npm run build
 ```
 
-CI (`.github/workflows/ci.yml`) runs these on GitHub-hosted runners. The repo is
-public, so never use the self-hosted build runner here: fork PRs would run on it.
+`code-quality.yml` runs these through `node-quality.yml@v1` on GitHub-hosted
+runners. The repo is public, so never use the self-hosted build runner here:
+fork PRs would run on it.
 
 ## Releasing
 
